@@ -9,95 +9,201 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="dark">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#">Piper Floyd</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="drones.html">Videography</a></li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">Piper Floyd</a>
+
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="drones.html">Videography</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Intro -->
-  <section class="intro">
+  <section class="intro text-center py-5">
     <h1>A portfolio of my cinematic works</h1>
     <p>Shot on a DJI Mini 3 and edited in DaVinci Resolve with custom color grading.  
-       Below is a collection of my favorite drone videos.</p>
+       Below is a collection of my favorite drone videos. Click on any video to watch with sound.</p>
   </section>
 
   <!-- Video Grid -->
   <section class="py-4">
     <div class="container">
       <div class="row g-4 justify-content-center">
+
+        <!-- Arizona -->
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="ratio vcard" style="--bs-aspect-ratio: 177.78%;">
-            <video src="media/arizona test.mp4" autoplay loop muted playsinline
-              data-bs-toggle="modal" data-bs-target="#videoModal" data-src="media/arizona test.mp4"></video>
+            <iframe 
+              src="https://player.vimeo.com/video/1116225115?background=1&autoplay=1&loop=1&muted=1"
+              class="video-embed"
+              frameborder="0"
+              allow="autoplay; fullscreen"
+              allowfullscreen></iframe>
+            <div class="stretched-link"
+              data-bs-toggle="modal"
+              data-bs-target="#videoModal"
+              data-type="vimeo"
+              data-src="https://player.vimeo.com/video/1116225115?autoplay=1&loop=1&muted=0">
+            </div>
           </div>
           <div class="text-center mt-2 small text-muted">Arizona</div>
         </div>
+
+        <!-- Spain -->
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="ratio vcard" style="--bs-aspect-ratio: 177.78%;">
-            <video src="media/Dragonstone.mp4" autoplay loop muted playsinline
-              data-bs-toggle="modal" data-bs-target="#videoModal" data-src="media/Dragonstone.mp4"></video>
+            <iframe
+              src="https://player.vimeo.com/video/1116284677?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0"
+              class="video-embed"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+
+            <!-- Overlay link to open modal with sound -->
+            <div class="stretched-link"
+              data-bs-toggle="modal"
+              data-bs-target="#videoModal"
+              data-type="vimeo"
+              data-src="https://player.vimeo.com/video/1116284677?autoplay=1&loop=1&muted=0">
+            </div>
           </div>
-          <div class="text-center mt-2 small text-muted">Dragonstone</div>
+          <div class="text-center mt-2 small text-muted">Spain</div>
         </div>
+
+        <!-- Reno -->
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="ratio vcard" style="--bs-aspect-ratio: 177.78%;">
-            <video src="media/reno.mov" autoplay loop muted playsinline
-              data-bs-toggle="modal" data-bs-target="#videoModal" data-src="media/reno.mov"></video>
+            <iframe
+              src="https://player.vimeo.com/video/1116285586?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0"
+              class="video-embed"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+
+            <!-- Overlay link to open modal with sound -->
+            <div class="stretched-link"
+              data-bs-toggle="modal"
+              data-bs-target="#videoModal"
+              data-type="vimeo"
+              data-src="https://player.vimeo.com/video/1116285586?autoplay=1&loop=1&muted=0">
+            </div>
           </div>
           <div class="text-center mt-2 small text-muted">Reno</div>
         </div>
+
       </div>
+
+      <!-- Scuba row -->
       <div class="row g-4 justify-content-center mt-4">
         <div class="col-12">
           <div class="ratio vcard" style="--bs-aspect-ratio: 56.25%;">
-            <video src="media/desktop scuba.mov" autoplay loop muted playsinline
-              data-bs-toggle="modal" data-bs-target="#videoModal" data-src="media/desktop scuba.mov"></video>
+            <iframe
+              src="https://player.vimeo.com/video/1116918028?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0"
+              class="video-embed"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+            <!-- Overlay link to open modal with sound -->
+            <div class="stretched-link"
+              data-bs-toggle="modal"
+              data-bs-target="#videoModal"
+              data-type="vimeo"
+              data-src="https://player.vimeo.com/video/1116918028?autoplay=1&loop=1&muted=0">
+            </div>
           </div>
           <div class="text-center mt-2 small text-muted">Key Largo</div>
         </div>
       </div>
+
+
+
+      <!-- Bottom row -->
       <div class="row g-4 justify-content-center mt-4">
+        
+        <!-- Appalachian Trail -->
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="ratio vcard" style="--bs-aspect-ratio: 177.78%;">
-            <video src="media/ATmobile.mp4" autoplay loop muted playsinline
-              data-bs-toggle="modal" data-bs-target="#videoModal" data-src="media/ATmobile.mp4"></video>
+            <iframe
+              src="https://player.vimeo.com/video/1116286409?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0"
+              class="video-embed"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+            <div class="stretched-link"
+              data-bs-toggle="modal"
+              data-bs-target="#videoModal"
+              data-type="vimeo"
+              data-src="https://player.vimeo.com/video/1116286409?autoplay=1&loop=1&muted=0">
+            </div>
           </div>
           <div class="text-center mt-2 small text-muted">Appalachian Trail</div>
         </div>
+
+        <!-- France -->
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="ratio vcard" style="--bs-aspect-ratio: 177.78%;">
-            <video src="media/france.mp4" autoplay loop muted playsinline
-              data-bs-toggle="modal" data-bs-target="#videoModal" data-src="media/france.mp4"></video>
+            <iframe
+              src="https://player.vimeo.com/video/1116286898?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0"
+              class="video-embed"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+            <div class="stretched-link"
+              data-bs-toggle="modal"
+              data-bs-target="#videoModal"
+              data-type="vimeo"
+              data-src="https://player.vimeo.com/video/1116286898?autoplay=1&loop=1&muted=0">
+            </div>
           </div>
           <div class="text-center mt-2 small text-muted">France</div>
         </div>
+
       </div>
-    </div>
+
   </section>
 
-  <!-- Video Modal -->
-  <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body position-relative">
-          <video id="modalVideo" controls autoplay loop>
-            <source src="" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content position-relative">
+
+      <!-- Custom Close Button -->
+      <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+        &times;
+      </button>
+
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <video id="modalVideo" controls autoplay loop class="d-none"></video>
+        <iframe id="modalIframe" class="d-none"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
       </div>
     </div>
   </div>
+</div>
+
+
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -107,11 +213,11 @@
   <footer class="footer">
     <div class="container">
       <p>&copy; 2024 Piper Floyd. All rights reserved.</p>
-      <p><a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> | <a href="mailto:floydpip2@gmail.com">Email</a> | <a href="https://github.com/floydpiper">GitHub</a></p>
-    </div>
+      <p><a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> | 
+         <a href="mailto:floydpip2@gmail.com">Email</a> | 
+         <a href="https://github.com/floydpiper">GitHub</a></p>
     </div>
   </footer>
-
 
 </body>
 </html>

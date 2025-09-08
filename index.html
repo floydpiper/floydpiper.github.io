@@ -10,20 +10,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="dark">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#">Piper Floyd</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="drones.html">Videography</a></li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">Piper Floyd</a>
+
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="drones.html">Videography</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- About Section -->
   <section id="about" class="about-section">
@@ -42,8 +51,11 @@
   <footer class="footer">
     <div class="container">
       <p>&copy; 2024 Piper Floyd. All rights reserved.</p>
-      <p><a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> | <a href="mailto:floydpip2@gmail.com">Email</a> | <a href="https://github.com/floydpiper">GitHub</a></p>
-    </div>
+      <p>
+        <a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> | 
+        <a href="mailto:floydpip2@gmail.com">Email</a> | 
+        <a href="https://github.com/floydpiper">GitHub</a>
+      </p>
     </div>
   </footer>
 

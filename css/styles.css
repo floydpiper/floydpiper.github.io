@@ -1,68 +1,70 @@
 :root {
-  --primary-bg: #fff;
-  --secondary-bg: #f9f9f9;
-  --text-color: #000;
-  --muted-text: #555;
-  --border-color: #ddd;
+  /* Dark Theme */
+  --primary-bg: #0d0d0d;
+  --text-color: #f1f1f1;
+  --muted-text: #aaa;
+  --highlight: #ffcc66;
+
   --shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
+/* ---------- Body---------- */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f4f4f4;
-  color: var(--text-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* Navbar */
-.navbar {
-  background-color: var(--primary-bg);
-  border-bottom: 1px solid var(--text-color);
+/* ---------- Navbar ---------- */
+body .navbar {
+  background: var(--primary-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding: 1rem;
 }
-.navbar-brand {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--text-color);
-}
-.nav-link {
-  color: var(--text-color);
-  margin-left: 20px;
+body .navbar-brand,
+body .nav-link {
+  color: var(--text-color) !important;
   font-size: 1rem;
-  transition: color 0.2s ease;
 }
-.nav-link:hover {
-  color: #555;
+body .nav-link:hover {
+  color: var(--highlight) !important;
+}
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler-icon {
+  filter: invert(1); 
 }
 
-/* About Section */
+/* ---------- About Section ---------- */
 .about-section {
+  background-color: var(--primary-bg);
+  padding: 80px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 100px 150px;
-  background-color: var(--primary-bg);
+  gap: 40px;
 }
-.about-text {
-  flex: 1;
-  padding-right: 30px;
-}
+
+.about-text { flex: 1; }
 .about-text h1 {
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   font-weight: bold;
   margin-bottom: 20px;
+  color: var(--highlight);
 }
 .about-text p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--muted-text);
   margin-bottom: 20px;
 }
-.about-image {
-  flex: 1;
-  max-width: 400px;
-}
+
+.about-image { flex: 1; max-width: 400px; }
 .about-image img {
   width: 100%;
   height: auto;
@@ -70,73 +72,27 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Responsive About */
 @media (max-width: 768px) {
   .about-section {
     flex-direction: column;
     text-align: center;
     padding: 50px 20px;
   }
-  .about-text {
-    padding-right: 0;
-  }
-  .about-image {
-    margin-top: 30px;
-  }
+  .about-text { padding-right: 0; }
+  .about-image { margin-top: 30px; max-width: 80%; }
+  .about-text h1 { font-size: 1.8rem; }
+  .about-text p { font-size: 1rem; }
 }
 
-/* Footer */
-.footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 20px 0;
-  background-color: var(--primary-bg);
-  border-top: 1px solid var(--text-color);
-}
-.footer a {
-  color: var(--text-color);
-  text-decoration: none;
-  font-weight: bold;
-}
-.footer a:hover {
-  color: #555;
-}
-:root {
-  --primary-bg: #0d0d0d;
-  --text-color: #f1f1f1;
-  --muted-text: #aaa;
-  --highlight: #ffcc66;
-}
-
-body {
-  background-color: var(--primary-bg);
-  color: var(--text-color);
-  font-family: 'Roboto', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Navbar */
-.navbar {
-  background: var(--primary-bg);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.navbar-brand, .nav-link {
-  color: var(--text-color) !important;
-}
-.nav-link:hover {
-  color: var(--highlight) !important;
-}
-
-/* Intro */
+/* ---------- Intro Section ---------- */
 .intro {
   max-width: 700px;
-  margin: 50px auto;
+  margin: 40px auto;
   text-align: center;
+  padding: 0 20px;
 }
 .intro h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--highlight);
 }
@@ -146,22 +102,28 @@ body {
   margin-top: 15px;
 }
 
-/* Video Cards */
-.vcard video {
-  border-radius: 6px;
-  object-fit: cover;
+/* ---------- Video Cards ---------- */
+.vcard {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.vcard:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 4px 10px rgba(255, 204, 102, 0.4);
+}
+.vcard video,
+.vcard iframe {
   width: 100%;
   height: 100%;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  object-fit: cover;
+  display: block;
+  border: none;
 }
-.vcard video:hover {
-  transform: translateY(-6px) scale(1.02);
 
-}
-.text-muted { color: var(--muted-text) !important; }
-
-/* Modal */
+/* ---------- Modal ---------- */
 .modal-content {
   background: transparent;
   border: none;
@@ -173,43 +135,61 @@ body {
   justify-content: center;
   align-items: center;
 }
-#modalVideo {
-  border-radius: 6px;
-  width: auto;
-  max-width: 80vw;
+#modalVideo, #modalIframe {
+  border-radius: 12px;
+  max-width: 90vw;
   max-height: 80vh;
 }
+#modalIframe { width: 90vw; height: 80vh; }
 @media (max-width: 768px) {
-  #modalVideo {
+  #modalVideo, #modalIframe {
     max-width: 95vw;
     max-height: 70vh;
   }
 }
 
-/* Blur + dark overlay */
 body.modal-open > :not(.modal) {
   filter: blur(20px);
-  -webkit-filter: blur(20px);
   transition: filter 0.3s ease;
 }
 .modal-backdrop.show {
   background-color: rgba(0,0,0,0.7);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
-/* Footer */
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 6px;
+  padding: 0 10px;
+  cursor: pointer;
+  z-index: 1056;
+  transition: background 0.2s ease;
+}
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--highlight);
+}
+
+/* ---------- Footer ---------- */
 .footer {
   margin-top: auto;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px;
   color: var(--muted-text);
   border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9rem;
 }
 .footer a {
   color: var(--highlight);
   text-decoration: none;
 }
-.footer a:hover {
-  color: #fff;
-}
+.footer a:hover { color: #fff; }
+

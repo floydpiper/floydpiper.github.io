@@ -1,6 +1,6 @@
 const videoModal = document.getElementById('videoModal');
-const modalVideo = document.getElementById('modalVideo');
-const modalIframe = document.getElementById('modalIframe');
+const modalVideo = document.getElementById('modalVideo') || document.getElementById('modalVideoDrone');
+const modalIframe = document.getElementById('modalIframe') || document.getElementById('modalIframeDrone');
 
 // When modal opens
 videoModal.addEventListener('show.bs.modal', function (event) {
@@ -11,7 +11,7 @@ videoModal.addEventListener('show.bs.modal', function (event) {
   if (type === 'vimeo') {
     // Hide video
     modalVideo.classList.add('d-none');
-    modalVideo.pause();
+    if (modalVideo.pause) modalVideo.pause();
     modalVideo.src = '';
 
     // Show iframe
@@ -25,13 +25,13 @@ videoModal.addEventListener('show.bs.modal', function (event) {
     // Show video
     modalVideo.classList.remove('d-none');
     modalVideo.src = src;
-    modalVideo.play();
+    if (modalVideo.play) modalVideo.play();
   }
 });
 
 // When modal closes
 videoModal.addEventListener('hidden.bs.modal', function () {
-  modalVideo.pause();
+  if (modalVideo.pause) modalVideo.pause();
   modalVideo.src = '';
   modalIframe.src = '';
 });

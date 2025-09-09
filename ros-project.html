@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROS API Call Project | Piper Floyd</title>
+
+  <!-- Bootstrap -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+  />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/project_styles.css">
+</head>
+<body class="dark">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">Piper Floyd</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="drones.html">Videography</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Content -->
+  <main class="container py-5">
+    <h1>ROS API Call Project</h1>
+    <p class="lead">
+      Documentation on plotting Google Maps route data on a LED screen using ROS, Python, and APIs.
+    </p>
+
+    <!-- Introduction -->
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        The first thing I do every morning is check traffic conditions. I wanted a solution to
+        automate this and display the route on an LED device when I wake up. Since I wanted to
+        learn ROS, I decided to build it around an API call integrated with ROS.
+      </p>
+    </section>
+
+    <!-- GUI -->
+    <section>
+      <h2>Creating the GUI</h2>
+      <p>
+        I wanted to create the simplest possible GUI. One solution was to use 
+        <a href="https://github.com/ParthJadhav/Tkinter-Designer" target="_blank">
+          Tkinter Designer
+        </a>
+        to generate Python Canvas code.
+      </p>
+      <p>Using Figma, I created this initial design:</p>
+      <img src="media/initial_design.jpg" 
+           alt="Initial GUI Design" 
+           class="rounded shadow-lg d-block mx-auto mb-4"
+           style="max-width: 400px; border: 2px solid #444;">
+      <p>I then pasted my Figma URL into Tkinter Designer, which generated the Canvas code:</p>
+            <!-- Scrollable Code Block -->
+      <figure>
+        <div class="code-block">
+# Example: ROS publisher template in Python
+import rospy
+
+from pathlib import Path
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+
+OUTPUT_PATH = Path(__file__).parent
+ASSETS_PATH = OUTPUT_PATH / Path(r"/home/floydpip2/build/assets/frame0")
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
+
+window = Tk()
+window.geometry("1024x600")
+window.configure(bg = "#2A2D39")
+
+canvas = Canvas(
+    window,
+    bg = "#2A2D39",
+    height = 600,
+    width = 1024,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvas.place(x = 0, y = 0)
+canvas.create_rectangle(
+    20.0, 20.0, 502.0, 374.0, fill="#30333E", outline=""
+)
+
+canvas.create_text(
+    199.0, 529.0, anchor="nw", text="Minutes to arrive",
+    fill="#FFFFFF", font=("Inter", 14 * -1)
+)
+
+canvas.create_text(
+    148.0, 413.0, anchor="nw", text="39.4",
+    fill="#36A582", font=("Inter", 96 * -1)
+)
+
+window.resizable(False, False)
+window.mainloop()
+        </div>
+        <figcaption class="mt-2 text-center">
+          Tkinter-generated Canvas code
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- API Key -->
+    <section>
+      <h2>Getting the API Key</h2>
+      <p>
+        To connect to the Google Maps API, I first needed to generate an API key. 
+
+      </p>
+      <img src="media/api_key.gif" 
+           alt="Navigating to Google Maps API key" 
+           class="rounded shadow-sm d-block mx-auto mb-3" 
+           style="max-width: 500px;">
+      <p>
+        I also utilized a helpful tutorial to create the key and make my first calls to the 
+        Google Maps API. This tutorial guided me through ensuring the key was correctly authorized 
+        and functional.
+      </p>
+
+
+    </section>
+
+    <!-- ROS Environment -->
+    <section>
+      <h2>Setting up the ROS Environment</h2>
+      <ul>
+        <li>Created a new workspace (<code>catkin_ws</code>)</li>
+        <li>Generated a project folder for this work</li>
+        <li>Developed two primary scripts:
+          <ul>
+            <li><strong>grab_route.py</strong> – fetches route data from Google Maps API</li>
+            <li><strong>display_route.py</strong> – visualizes the route in a Tkinter window</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>ROS Scripts Breakdown</h3>
+      <h4>grab_route.py</h4>
+      <p>
+        This script connects to the Google Maps API, retrieves the JSON response, and parses 
+        the route data into a ROS message.
+      </p>
+      <h4>display_route.py</h4>
+      <p>
+        This script subscribes to the route message and updates the Tkinter canvas to display 
+        travel time and route information.
+      </p>
+    </section>
+
+    <!-- <section>
+      <h2>Final Output</h2>
+      <img src="media/final_output.gif" 
+           alt="Final Output Demo" 
+           class="rounded shadow-sm d-block mx-auto mb-4"
+           style="max-width: 600px;">
+    </section> -->
+
+    <section>
+      <h2>Future Work</h2>
+      <ul>
+        <li>Deploy to Raspberry Pi connected to an LED display</li>
+        <li>Add a timer so the system only runs in the mornings</li>
+      </ul>
+    </section>
+
+  </main>
+
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Piper Floyd. All rights reserved.</p>
+      <p>
+        <a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> | 
+        <a href="mailto:floydpip2@gmail.com">Email</a> | 
+        <a href="https://github.com/floydpiper">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

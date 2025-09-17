@@ -43,147 +43,245 @@
     </p>
 
     <!-- Introduction -->
-    <section>
-      <h2>Introduction</h2>
-      <p>
-        The first thing I do every morning is check traffic conditions. I wanted a solution to
-        automate this and display the route on an LED device when I wake up. Since I wanted to
-        learn ROS, I decided to build it around an API call integrated with ROS.
-      </p>
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Introduction</h2>
+            <p>
+              The first thing I do every morning is check traffic conditions. I wanted a solution to
+              automate this and display the route on an LED device when I wake up. Since I wanted to
+              learn ROS, I decided to build it around an API call integrated with ROS.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- GUI -->
-    <section>
-      <h2>Creating the GUI</h2>
-      <p>
-        I wanted to create the simplest possible GUI. One solution was to use 
-        <a href="https://github.com/ParthJadhav/Tkinter-Designer" target="_blank">
-          Tkinter Designer
-        </a>
-        to generate Python Canvas code.
-      </p>
-      <p>Using Figma, I created this initial design:</p>
-      <img src="media/initial_design.jpg" 
-           alt="Initial GUI Design" 
-           class="rounded shadow-lg d-block mx-auto mb-4"
-           style="max-width: 400px; border: 2px solid #444;">
-      <p>I then pasted my Figma URL into Tkinter Designer, which generated the Canvas code:</p>
-            <!-- Scrollable Code Block -->
-      <figure>
-        <div class="code-block">
-# Example: ROS publisher template in Python
-import rospy
-
-from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
-OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/home/floydpip2/build/assets/frame0")
-
-def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
-
-window = Tk()
-window.geometry("1024x600")
-window.configure(bg = "#2A2D39")
-
-canvas = Canvas(
-    window,
-    bg = "#2A2D39",
-    height = 600,
-    width = 1024,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
-)
-
-canvas.place(x = 0, y = 0)
-canvas.create_rectangle(
-    20.0, 20.0, 502.0, 374.0, fill="#30333E", outline=""
-)
-
-canvas.create_text(
-    199.0, 529.0, anchor="nw", text="Minutes to arrive",
-    fill="#FFFFFF", font=("Inter", 14 * -1)
-)
-
-canvas.create_text(
-    148.0, 413.0, anchor="nw", text="39.4",
-    fill="#36A582", font=("Inter", 96 * -1)
-)
-
-window.resizable(False, False)
-window.mainloop()
+    <section class="py-5">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <!-- Text -->
+          <div class="col-lg-6">
+            <h2 >Creating the GUI</h2>
+            <p>
+              I wanted to create the simplest possible GUI. One solution was to use 
+              <a href="https://github.com/ParthJadhav/Tkinter-Designer" target="_blank" class="text-info">
+                Tkinter Designer
+              </a>
+              to generate Python Canvas code.
+            </p>
+            <p>
+              Using Figma, I created this initial design and then generated the Canvas code 
+              using Tkinter Designer.
+            </p>
+          </div>
+          <!-- Image -->
+          <div class="col-lg-6 text-center">
+            <img src="media/initial_design.jpg" 
+                 alt="Initial GUI Design" 
+                 class="img-fluid rounded shadow-lg"
+                 style="max-width: 450px; border: 2px solid #444;">
+          </div>
         </div>
-        <figcaption class="mt-2 text-center">
-          Tkinter-generated Canvas code
-        </figcaption>
-      </figure>
+      </div>
+    </section>
+
+    <!-- GUI Code -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>I then pasted my Figma URL into Tkinter Designer, which generated the Canvas code:</p>
+            <figure>
+              <div class="code-block">
+              <pre><code>
+              # Example: ROS publisher template in Python
+              import rospy
+
+              from pathlib import Path
+              from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+
+              OUTPUT_PATH = Path(__file__).parent
+              ASSETS_PATH = OUTPUT_PATH / Path(r"/home/floydpip2/build/assets/frame0")
+
+              def relative_to_assets(path: str) -> Path:
+                  return ASSETS_PATH / Path(path)
+
+              window = Tk()
+              window.geometry("1024x600")
+              window.configure(bg = "#2A2D39")
+
+              canvas = Canvas(
+                  window,
+                  bg = "#2A2D39",
+                  height = 600,
+                  width = 1024,
+                  bd = 0,
+                  highlightthickness = 0,
+                  relief = "ridge"
+              )
+
+              canvas.place(x = 0, y = 0)
+              canvas.create_rectangle(
+                  20.0, 20.0, 502.0, 374.0, fill="#30333E", outline=""
+              )
+
+              canvas.create_text(
+                  199.0, 529.0, anchor="nw", text="Minutes to arrive",
+                  fill="#FFFFFF", font=("Inter", 14 * -1)
+              )
+
+              canvas.create_text(
+                  148.0, 413.0, anchor="nw", text="39.4",
+                  fill="#36A582", font=("Inter", 96 * -1)
+              )
+
+              window.resizable(False, False)
+              window.mainloop()
+              </code></pre>
+              </div>
+
+              <figcaption class="mt-2 text-center">
+                Tkinter-generated Canvas code
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- API Key -->
-    <section>
-      <h2>Getting the API Key</h2>
-      <p>
-        To connect to the Google Maps API, I first needed to generate an API key. 
-
-      </p>
-      <img src="media/api_key.gif" 
-           alt="Navigating to Google Maps API key" 
-           class="rounded shadow-sm d-block mx-auto mb-3" 
-           style="max-width: 500px;">
-      <p>
-        I also utilized a helpful tutorial to create the key and make my first calls to the 
-        Google Maps API. This tutorial guided me through ensuring the key was correctly authorized 
-        and functional.
-      </p>
-
-
+    <section class="py-5">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <!-- Image left -->
+          <div class="col-lg-6 text-center">
+            <img src="media/key.jpg" 
+                 alt="Navigating to Google Maps API key" 
+                 class="img-fluid rounded shadow-sm"
+                 style="max-width: 500px;">
+          </div>
+          <!-- Text right -->
+          <div class="col-lg-6">
+            <h2>Getting the API Key</h2>
+            <p>
+              To connect to the Google Maps API, I first needed to generate an API key. 
+            </p>
+            <p>
+              Once they key was created, I was able to copy the value and pass it as a parameter in my Python program.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ROS Environment -->
-    <section>
-      <h2>Setting up the ROS Environment</h2>
-      <ul>
-        <li>Created a new workspace (<code>catkin_ws</code>)</li>
-        <li>Generated a project folder for this work</li>
-        <li>Developed two primary scripts:
-          <ul>
-            <li><strong>grab_route.py</strong> – fetches route data from Google Maps API</li>
-            <li><strong>display_route.py</strong> – visualizes the route in a Tkinter window</li>
-          </ul>
-        </li>
-      </ul>
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Setting up the ROS Environment</h2>
+            <h5>First time using ROS only</h5>
+            <p>As this was my first time using ROS, I needed to create a workspace (<code>catkin_ws</code>). I performed the following steps to create it:</p> 
+            <ol>
+              <li>Create the workspace </li>
+              <div class="code-block">mkdir -p ~/catkin_ws/src
+              cd ~/catkin_ws/</div>
+              <li>Initialized the workspace</li>
+              <div class="code-block">catkin_make</div>
+              <li>Source the workspace</li>
+              <p>You need to source the workspace everytime you start ROS by running the following code:</p>
+              <div class="code-block">source ~/catkin_ws/devel/setup.bash</div>
+              <p>Instead of running this code each time you start ROS, you can add it once to <code>~/.bashrc</code> so that it runs automatically whenever a new terminal is opened:</p>
+              <div class="code-block">echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+              source ~/.bashrc</div>
+            </ol>
+            <h5>Starting ROS</h5>
+            <p>In the first Ubuntu terminal opened, run the following code to start the ROS Master:</p>
+             <div class="code-block">roscore</div>
+          
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h3>ROS Scripts Breakdown</h3>
-      <h4>grab_route.py</h4>
-      <p>
-        This script connects to the Google Maps API, retrieves the JSON response, and parses 
-        the route data into a ROS message.
-      </p>
-      <h4>display_route.py</h4>
-      <p>
-        This script subscribes to the route message and updates the Tkinter canvas to display 
-        travel time and route information.
-      </p>
+    <!-- ROS Scripts Breakdown -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3>Creating ROS scripts</h3>
+            <p>To publish and display the Google Map's data, I needed to create ROS nodes.</p>
+            <h4>grab_route.py</h4>
+            <p>
+              This script connects to the Google Maps API, retrieves the JSON response, and parses 
+              the route data into a ROS message.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- <section>
-      <h2>Final Output</h2>
-      <img src="media/final_output.gif" 
-           alt="Final Output Demo" 
-           class="rounded shadow-sm d-block mx-auto mb-4"
-           style="max-width: 600px;">
-    </section> -->
+    <!-- Raspberry Pi -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <!-- Text left -->
+          <div class="col-lg-6">
+            <h2>Deploying to Raspberry Pi</h2>
+            <p>
+              To utilize the ROS nodes I created, I needed to install Ubuntu on the Raspberry Pi. 
+              I followed these steps:
+            </p>
+            <ol>
+              <li>
+                <h5>Download Raspberry Pi Imager</h5>
+                <p>
+                  Installing this Imager facilitates the process of flashing Ubuntu to the microSD card. 
+                  You can download the software 
+                  <a href="https://www.raspberrypi.com/software/" target="_blank"class="text-info">here</a>.
+                </p>
+              </li>
+              <li>
+                <h5>Flash Ubuntu to the microSD</h5>
+                <p>
+                  In the software, I made the following selections and then hit "NEXT".
+                </p>
+              </li>
+                <li>
+                <h5>Add microSD to Raspberry Pi</h5>
+                <p>
+                  Once Ubuntu has been flashed onto the Pi, I placed the microSD inside the slot on the Pi.
+                </p>
+              </li>
+            </ol>
+          </div>
+          <!-- Image right -->
+          <div class="col-lg-6 text-center">
+            <img src="media/imager.jpg" 
+                 alt="Raspberry Pi Imager screenshot" 
+                 class="img-fluid rounded shadow-sm"
+                 style="max-width: 500px;">
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <section>
-      <h2>Future Work</h2>
-      <ul>
-        <li>Deploy to Raspberry Pi connected to an LED display</li>
-        <li>Add a timer so the system only runs in the mornings</li>
-      </ul>
+    <!-- Future Work -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Future Work</h2>
+            <ul>
+              <li>Deploy to Raspberry Pi connected to an LED display</li>
+              <li>Add a timer so the system only runs in the mornings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
   </main>

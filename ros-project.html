@@ -1,306 +1,711 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROS API Call Project | Piper Floyd</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROS API Call Project | Piper Floyd</title>
 
-  <!-- Bootstrap -->
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-  />
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/project_styles.css">
-</head>
-<body class="dark">
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#">Piper Floyd</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="drones.html">Videography</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-  <!-- Content -->
-  <main class="container py-5">
-    <h1>ROS API Call Project</h1>
-    <p class="lead">
-      Documentation on plotting Google Maps route data on a LED screen using ROS, Python, and APIs.
-    </p>
-
-    <!-- Introduction -->
-    <section class="py-5">
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/project_styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  </head>
+  <body class="dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>Introduction</h2>
-            <p>
-              The first thing I do every morning is check traffic conditions. I wanted a solution to
-              automate this and display the route on an LED device when I wake up. Since I wanted to
-              learn ROS, I decided to build it around an API call integrated with ROS.
-            </p>
-          </div>
+        <a class="navbar-brand" href="#">Piper Floyd</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="drones.html">Videography</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
+    </nav>
 
-    <!-- GUI -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <!-- Text -->
-          <div class="col-lg-6">
-            <h2 >Creating the GUI</h2>
-            <p>
-              I wanted to create the simplest possible GUI. One solution was to use 
-              <a href="https://github.com/ParthJadhav/Tkinter-Designer" target="_blank" class="text-info">
-                Tkinter Designer
-              </a>
-              to generate Python Canvas code.
-            </p>
-            <p>
-              Using Figma, I created this initial design and then generated the Canvas code 
-              using Tkinter Designer.
-            </p>
-          </div>
-          <!-- Image -->
-          <div class="col-lg-6 text-center">
-            <img src="media/initial_design.jpg" 
-                 alt="Initial GUI Design" 
-                 class="img-fluid rounded shadow-lg"
-                 style="max-width: 450px; border: 2px solid #444;">
+    <!-- Main content -->
+    <main class="container py-5">
+      <h1>ROS API Call Project</h1>
+      <p class="lead">
+        Documentation on plotting Google Maps route data on a LED screen using
+        ROS, Python, and APIs.
+      </p>
+
+      <!-- Introduction -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>Introduction</h2>
+              <p>
+                The first thing I do every morning is check the traffic
+                conditions to set the pace for how quickly I need to get ready.
+                I wanted a solution to automate this and display the route and
+                ETA on an LED device when I wake up. Since I wanted to learn
+                ROS, I decided to build it around an API call integrated with
+                ROS nodes.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- GUI Code -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <p>I then pasted my Figma URL into Tkinter Designer, which generated the Canvas code:</p>
-            <figure>
-              <div class="code-block">
-              <pre><code>
-              # Example: ROS publisher template in Python
-              import rospy
+      <!-- GUI -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <!-- Paragraph -->
+            <div class="col-lg-6">
+              <h2>Creating the GUI</h2>
+              <p>
+                I wanted an easy solution to create the GUI and one option I
+                found was to use
+                <a
+                  href="https://github.com/ParthJadhav/Tkinter-Designer"
+                  target="_blank"
+                  class="text-info"
+                >
+                  Tkinter Designer
+                </a>
+                to generate Python Canvas code.
+              </p>
+              <p>
+                Using Figma, I created this initial design and then generated
+                the Canvas code using Tkinter Designer.
+              </p>
+            </div>
+            <!-- Image -->
+            <div class="col-lg-6 text-center">
+              <img
+                src="media/initial_design.jpg"
+                alt="Initial GUI Design"
+                class="img-fluid rounded shadow-lg"
+                style="max-width: 450px; border: 2px solid #444"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-              from pathlib import Path
-              from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+      <!-- API Key -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <!-- Set image to the left -->
+            <div class="col-lg-6 text-center">
+              <img
+                src="media/key.jpg"
+                alt="Navigating to Google Maps API key"
+                class="img-fluid rounded shadow-sm"
+                style="max-width: 500px"
+              />
+            </div>
+            <!-- Text to the right -->
+            <div class="col-lg-6">
+              <h2>Getting the API Key</h2>
+              <p>
+                To connect to the Google Maps API, I first needed to generate an
+                API key.
+              </p>
+              <p>
+                Once the key was created, I was able to copy the value and pass
+                it as a parameter in my Python program.
+              </p>
+              <p>
+                For security, I also added my machine’s IP address to the
+                <b>API key restrictions</b> list so that only my device can use
+                it. I was able to the public IP with:
+              </p>
+              <pre><code class="language-bash">curl ifconfig.me</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              OUTPUT_PATH = Path(__file__).parent
-              ASSETS_PATH = OUTPUT_PATH / Path(r"/home/floydpip2/build/assets/frame0")
+      <!-- ROS Environment -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>Setting up the ROS Environment</h2>
+              <h5>First time using ROS only</h5>
+              <p>
+                As this was my first time using ROS, I needed to create a
+                workspace (<code>catkin_ws</code>). I performed the following
+                steps to create it:
+              </p>
+              <ol>
+                <li>Create the workspace</li>
+                <pre><code class="language-bash">
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+              </code></pre>
+                <li>Initialized the workspace</li>
+                <pre><code class="language-bash">catkin_make</code></pre>
+                <li>Source the workspace</li>
+                <p>
+                  You need to source the workspace everytime you start ROS by
+                  running the following code:
+                </p>
+                <pre><code class="language-bash">source ~/catkin_ws/devel/setup.bash</code></pre>
+                <p>
+                  Instead of running this code each time you start ROS, you can
+                  add it once to <code>~/.bashrc</code> so that it runs
+                  automatically whenever a new terminal is opened:
+                </p>
+                <pre><code class="language-bash">
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+              </code></pre>
+              </ol>
+              <h5>Starting ROS</h5>
+              <p>
+                In the first Ubuntu terminal opened, run the following code to
+                start the ROS Master:
+              </p>
+              <pre><code class="language-bash">roscore</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              def relative_to_assets(path: str) -> Path:
-                  return ASSETS_PATH / Path(path)
+      <!-- ROS Scripts Breakdown -->
+      <section class="py-5">
+        <h3>Creating ROS scripts</h3>
+        <p>
+          To publish and display the Google Map's data, I created two ROS nodes.
+          For full code breakdown, click below:
+        </p>
 
-              window = Tk()
-              window.geometry("1024x600")
-              window.configure(bg = "#2A2D39")
+        <div class="accordion" id="rosScriptsAccordion">
+          <!-- grab_route.py -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingGrabRoute">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseGrabRoute"
+                aria-expanded="false"
+                aria-controls="collapseGrabRoute"
+              >
+                <code>grab_route.py</code>&nbsp;&nbsp;Publisher Node (click to
+                expand)
+              </button>
+            </h2>
+            <div
+              id="collapseGrabRoute"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingGrabRoute"
+              data-bs-parent="#rosScriptsAccordion"
+            >
+              <div class="accordion-body">
+                <p>
+                  This script is the <b>publisher node</b>. It connects to the
+                  Google Maps API and retrieves the routes between start and end
+                  coordinates. It then publishes them as a JSON message on the
+                  <code>/route_data</code> topic.
+                </p>
+                <pre><code class="language-python">
+#!/usr/bin/python3
 
-              canvas = Canvas(
-                  window,
-                  bg = "#2A2D39",
-                  height = 600,
-                  width = 1024,
-                  bd = 0,
-                  highlightthickness = 0,
-                  relief = "ridge"
-              )
+import rospy
+from std_msgs.msg import String
+import requests
+import json
 
-              canvas.place(x = 0, y = 0)
-              canvas.create_rectangle(
-                  20.0, 20.0, 502.0, 374.0, fill="#30333E", outline=""
-              )
+# Set coordinates and Google API key
+API = 'YOUR KEY HERE' 
+# First destination
+start1 = ['LAT', 'LON']
+end1 = ['LAT', 'LON']
+# Second destination 
+start2 = ['LAT', 'LON']
+end2   = ['LAT', 'LON']
+              </code></pre>
+                <p>
+                  <b>grab_route_color(delay)</b> defines the color of the route
+                  that will be displayed on the LED screen based on how heavy
+                  the traffic is:
+                </p>
+                <pre><code class="language-python">
+def grab_route_color(delay):
+    """ This function returns the color of the route based on traffic 
 
-              canvas.create_text(
-                  199.0, 529.0, anchor="nw", text="Minutes to arrive",
-                  fill="#FFFFFF", font=("Inter", 14 * -1)
-              )
+    Args:
+        delay: Traffic delay
+    """
+     # < 5 min delay
+    if delay < 300:        
+        color = "#26a269" 
+    # < 15 min delay  
+    elif delay < 900:       
+        color = "#F2994A"  
+    # < 30 min delay
+    elif delay < 1800:      
+        color = "#F53F35"   
+    else:
+        color = "#8B0000"   
 
-              canvas.create_text(
-                  148.0, 413.0, anchor="nw", text="39.4",
-                  fill="#36A582", font=("Inter", 96 * -1)
-              )
+    return color
+              </code></pre>
 
-              window.resizable(False, False)
-              window.mainloop()
+                <p>
+                  <b>fetch_route_data()</b> builds the JSON request object,
+                  which is used to call the API. It then only extracts ETA,
+                  polyline, and color:
+                </p>
+                <pre><code class="language-python">
+def fetch_route_data(start, end):
+    """ This function gets the Google Route for a specific start and end destination.
+
+    Args:
+        start: (lat,lon) of start coordinate
+        end: (lat,lon) of end coordinate
+
+    Returns:
+        json object: Json object that contains eta, polyline of route, and route color
+    """
+    # Build json request
+    url = 'https://routes.googleapis.com/directions/v2:computeRoutes'
+    headers = {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': API,
+        'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.travelAdvisory'
+    }
+    body = {
+        "origin": {"location": {"latLng": {"latitude": start[0], "longitude": start[1]}}}, 
+        "destination": {"location": {"latLng": {"latitude": end[0], "longitude": end[1]}}}, 
+        "travelMode": "DRIVE",
+        "routingPreference": "TRAFFIC_AWARE_OPTIMAL"
+    }
+
+    response = requests.post(url, headers=headers, json=body)
+    data = response.json()
+
+    # Filter out information
+    route = data['routes'][0]
+    duration = route['duration']
+    encoded_polyline = route['polyline']['encodedPolyline']
+
+    # Extract route delay
+    delay = 0
+    travel = route.get("travelAdvisory")
+    if travel:
+        delay_str = travel.get("delay")
+        if delay_str:
+            delay = int(delay_str[:-1])
+
+    color = grab_route_color(delay)
+
+    # Return only necessary information 
+    return {
+        'eta': duration, 
+        'polyline': encoded_polyline, 
+        'color': color
+    }
+              </code></pre>
+                <p>
+                  <b>main()</b> Calls the functions described above and
+                  publishes the data as a ROS message:
+                </p>
+                <pre><code class="language-python">
+def main():
+    """ Main function 
+    """
+    # Set ROS nodes
+    rospy.init_node('route_grabber')
+    pub = rospy.Publisher('/route_data', String, queue_size=10)
+    rate = rospy.Rate(1)  
+
+    # Grab and concat route information
+    while not rospy.is_shutdown():
+        route1 = fetch_route_data(start1, end1)
+        route2 = fetch_route_data(start2, end2)
+
+        # Combine both into one JSON message
+        msg = json.dumps({
+            'route1': route1,
+            'route2': route2
+        })
+
+        pub.publish(msg)
+        print("Published both routes")
+        rate.sleep()
+
+
+if __name__ == '__main__':
+    main()
+
+
               </code></pre>
               </div>
-
-              <figcaption class="mt-2 text-center">
-                Tkinter-generated Canvas code
-              </figcaption>
-            </figure>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- API Key -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <!-- Image left -->
-          <div class="col-lg-6 text-center">
-            <img src="media/key.jpg" 
-                 alt="Navigating to Google Maps API key" 
-                 class="img-fluid rounded shadow-sm"
-                 style="max-width: 500px;">
-          </div>
-          <!-- Text right -->
-          <div class="col-lg-6">
-            <h2>Getting the API Key</h2>
-            <p>
-              To connect to the Google Maps API, I first needed to generate an API key. 
-            </p>
-            <p>
-              Once they key was created, I was able to copy the value and pass it as a parameter in my Python program.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ROS Environment -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>Setting up the ROS Environment</h2>
-            <h5>First time using ROS only</h5>
-            <p>As this was my first time using ROS, I needed to create a workspace (<code>catkin_ws</code>). I performed the following steps to create it:</p> 
-            <ol>
-              <li>Create the workspace </li>
-              <div class="code-block">mkdir -p ~/catkin_ws/src
-              cd ~/catkin_ws/</div>
-              <li>Initialized the workspace</li>
-              <div class="code-block">catkin_make</div>
-              <li>Source the workspace</li>
-              <p>You need to source the workspace everytime you start ROS by running the following code:</p>
-              <div class="code-block">source ~/catkin_ws/devel/setup.bash</div>
-              <p>Instead of running this code each time you start ROS, you can add it once to <code>~/.bashrc</code> so that it runs automatically whenever a new terminal is opened:</p>
-              <div class="code-block">echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-              source ~/.bashrc</div>
-            </ol>
-            <h5>Starting ROS</h5>
-            <p>In the first Ubuntu terminal opened, run the following code to start the ROS Master:</p>
-             <div class="code-block">roscore</div>
-          
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ROS Scripts Breakdown -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3>Creating ROS scripts</h3>
-            <p>To publish and display the Google Map's data, I needed to create ROS nodes.</p>
-            <h4>grab_route.py</h4>
-            <p>
-              This script connects to the Google Maps API, retrieves the JSON response, and parses 
-              the route data into a ROS message.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Raspberry Pi -->
-    <section class="py-5">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <!-- Text left -->
-          <div class="col-lg-6">
-            <h2>Deploying to Raspberry Pi</h2>
-            <p>
-              To utilize the ROS nodes I created, I needed to install Ubuntu on the Raspberry Pi. 
-              I followed these steps:
-            </p>
-            <ol>
-              <li>
-                <h5>Download Raspberry Pi Imager</h5>
+          <!-- display_route.py -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingDisplayRoute">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseDisplayRoute"
+                aria-expanded="false"
+                aria-controls="collapseDisplayRoute"
+              >
+                <code>display_route.py</code>&nbsp;&nbsp;Subscriber Node (click
+                to expand)
+              </button>
+            </h2>
+            <div
+              id="collapseDisplayRoute"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingDisplayRoute"
+              data-bs-parent="#rosScriptsAccordion"
+            >
+              <div class="accordion-body">
                 <p>
-                  Installing this Imager facilitates the process of flashing Ubuntu to the microSD card. 
-                  You can download the software 
-                  <a href="https://www.raspberrypi.com/software/" target="_blank"class="text-info">here</a>.
+                  This script is the <b>subscriber node</b>. It listens to the
+                  <code>/route_data</code> topic and decodes the JSON. It also
+                  displays the ETA, arrival time, and route on the GUI.
                 </p>
-              </li>
-              <li>
-                <h5>Flash Ubuntu to the microSD</h5>
+
+                <pre><code class="language-python">
+#!/usr/bin/python3
+
+import rospy
+from std_msgs.msg import String
+import requests
+import json
+import polyline as pl
+import tkdesigner
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from decimal import Decimal 
+import datetime
+
+# Define screen size of LED
+width = 500
+height = 400
+window = Tk()
+
+# --------- Define GUI ------ #
+canvas = Canvas(
+    window,
+    bg = "#2A2D39",
+    height = 600,
+    width = 1024,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvas.place(x = 0, y = 0)
+first_rect = canvas.create_rectangle(
+    20.0,
+    20.0,
+    502.0,
+    374.0,
+    fill="#30333E",
+    outline=""
+)
+.
+.
+.
+
+              </code></pre>
+
                 <p>
-                  In the software, I made the following selections and then hit "NEXT".
+                  Below are some <b>helper functions</b> that handle decoding
+                  the polyines, mapping the [lat, lon] coordinates to fit the
+                  LED screen, and calculate the arrival time.
                 </p>
-              </li>
+                <pre><code class="language-python"> 
+def convert_seconds_to_minutes(seconds):
+    """ This function converts seconds to minutes 
+
+    Args:
+        seconds (string): The second in a string format. EX: 345s
+
+    Returns:
+        minutes: The newly converted minutes
+    """
+    # Eliminate the s "###s"
+    second = seconds[: -1]
+    minutes = Decimal(second)/60
+
+    return round(minutes)
+
+def decode_polyline(polyline):
+    """ This function takes the polyline from the JSON object and decodes it
+
+    Args:
+        polyline (_type_): The polyline from the JSON object
+
+    Returns:
+        decoded polyline: The decoded polyline
+    """
+    return pl.decode(polyline)
+
+def latlon_to_xy(lat, lon, min_lat, max_lat, min_lon, max_lon, x_min, y_min, x_max, y_max):
+    """ Converts lat/lon coordinates into screen (x, y) coordinates that fit inside the screen
+
+    Args:
+        lat (float): Lat of the point 
+        lon (float): Lon of the point 
+        min_lat (float): Min lat of the bounding box
+        max_lat (float): Max lat of the bounding box
+        min_lon (float): Min lon of the bounding box
+        max_lon (float): Max lon of the bounding box
+        x_min (int): Min x pixel coordinate 
+        y_min (int): Min y pixel coordinate 
+        x_max (int): Max x pixel coordinate 
+        y_max (int): Max y pixel coordinate 
+
+    Returns:
+        x, y: Pixel (x, y) position corresponding to the lat/lon
+    """
+    rect_width = x_max - x_min
+    rect_height = y_max - y_min
+
+
+    x = int(((lon - min_lon) / (max_lon - min_lon + 1e-6)) * rect_width + x_min)
+    y = int(((max_lat - lat) / (max_lat - min_lat + 1e-6)) * rect_height + y_min)
+
+    return x, y
+
+
+def get_arrival_time(eta):
+    """ This function takes the eta and calculates the arrival time
+
+    Args:
+        eta: Estimated time unti arrival
+
+    Returns:
+        arrival time: The arrival time in a specified format 
+    """
+    time = datetime.datetime.now()
+    minutes = datetime.timedelta(minutes=eta)   
+    arrival = time + minutes
+
+    return arrival.strftime("%H:%M")
+
+def start_gui():
+    """ Starts up the GUI
+    """
+    window.geometry("1024x600")
+    window.configure(bg="#2A2D39")
+    window.resizable(False, False)
+    window.mainloop()
+              </code></pre>
+
+                <p>
+                  <b>Callback</b> updates ETA, arrival, and draws polylines when
+                  new data arrives:
+                </p>
+                <pre><code class="language-python">
+def callback(msg):
+    """ ROS subscriber callback that updates GUI based on new route data
+
+    Args:
+        msg: JSON encoded message
+    """
+    # Retrieve JSON information 
+    data = json.loads(msg.data)
+
+    # ---------------- Route 1 (upper left box) ---------------- #
+    # Extract information from JSON
+    eta1 = data['route1']['eta']
+    minutes1 = convert_seconds_to_minutes(eta1)
+    color1 = data['route1']['color']  
+    arrival1 = get_arrival_time(minutes1)
+
+    # Update GUI to reflect new eta and arrival time
+    canvas.itemconfigure(first_eta, text=str(minutes1) + " min", fill=color1)
+    canvas.itemconfigure(first_arrival, text="Arrival: " + str(arrival1))
+
+    # Decode polyline and draw route on screen
+    points1 = decode_polyline(data['route1']['polyline'])
+    lats1 = [pt[0] for pt in points1]
+    lons1 = [pt[1] for pt in points1]
+    min_lat1, max_lat1 = min(lats1), max(lats1)
+    min_lon1, max_lon1 = min(lons1), max(lons1)
+
+    xy_points1 = []
+    for lat, lon in points1:
+        x, y = latlon_to_xy(lat, lon, min_lat1, max_lat1, min_lon1, max_lon1,
+                            x_min=40, y_min=70, x_max=490, y_max=360)  
+        xy_points1.extend([x, y])
+
+    canvas.create_line(xy_points1, width=7, fill=color1, smooth=True, splinesteps=36)
+
+    # ---------------- Route 2 (upper right box) ---------------- #
+    # Extract information from JSON
+    eta2 = data['route2']['eta']
+    minutes2 = convert_seconds_to_minutes(eta2)
+    color2 = data['route2']['color']   # <-- use color from Google data
+    arrival2 = get_arrival_time(minutes2)
+
+    # Update GUI to reflect new eta and arrival time
+    canvas.itemconfigure(second_eta, text=str(minutes2) + " min", fill=color2)
+    canvas.itemconfigure(second_arrival, text="Arrival: " + str(arrival2))
+
+    # Decode polyline and draw route on screen
+    points2 = decode_polyline(data['route2']['polyline'])
+    lats2 = [pt[0] for pt in points2]
+    lons2 = [pt[1] for pt in points2]
+    min_lat2, max_lat2 = min(lats2), max(lats2)
+    min_lon2, max_lon2 = min(lons2), max(lons2)
+
+    xy_points2 = []
+    for lat, lon in points2:
+        x, y = latlon_to_xy(lat, lon, min_lat2, max_lat2, min_lon2, max_lon2,
+                            x_min=542, y_min=70, x_max=984, y_max=340) 
+        xy_points2.extend([x, y])
+
+    canvas.create_line(xy_points2, width=7, fill=color2, smooth=True, splinesteps=36)
+
+              </code></pre>
+                <p>Finally, the code will run below:</p>
+                <pre><code class="language-python">
+if __name__ == '__main__':
+
+    # Start ROS
+    rospy.init_node('display_gui')
+    rospy.Subscriber('/route_data', String, callback)
+
+    start_gui()
+
+              </code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Raspberry Pi -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <!-- Text left -->
+            <div class="col-lg-6">
+              <h2>Deploying to Raspberry Pi</h2>
+              <p>
+                To utilize the ROS nodes I created, I needed to install Ubuntu
+                on the Raspberry Pi. I followed these steps:
+              </p>
+              <ol>
                 <li>
-                <h5>Add microSD to Raspberry Pi</h5>
-                <p>
-                  Once Ubuntu has been flashed onto the Pi, I placed the microSD inside the slot on the Pi.
-                </p>
-              </li>
-            </ol>
-          </div>
-          <!-- Image right -->
-          <div class="col-lg-6 text-center">
-            <img src="media/imager.jpg" 
-                 alt="Raspberry Pi Imager screenshot" 
-                 class="img-fluid rounded shadow-sm"
-                 style="max-width: 500px;">
+                  <h5>Download Raspberry Pi Imager</h5>
+                  <p>
+                    Installing this Imager facilitates the process of flashing
+                    Ubuntu to the microSD card. You can download the software
+                    <a
+                      href="https://www.raspberrypi.com/software/"
+                      target="_blank"
+                      class="text-info"
+                      >here</a
+                    >.
+                  </p>
+                </li>
+                <li>
+                  <h5>Flash Ubuntu to the microSD</h5>
+                  <p>
+                    In the software, I made the following selections and then
+                    hit "NEXT".
+                  </p>
+                </li>
+                <li>
+                  <h5>Add microSD to Raspberry Pi</h5>
+                  <p>
+                    Once Ubuntu has been flashed onto the Pi, I placed the
+                    microSD inside the slot on the Pi.
+                  </p>
+                </li>
+                <li>
+                  <h5>Cloning repository</h5>
+                  <p>
+                    On the Pi, I ran the following command to clone the repo:
+                  </p>
+                  <pre><code class="language-bash">
+cd ~
+git clone https://github.com/&lt;yourname&gt;/&lt;repo&gt;.git catkin_ws/src
+cd ~/catkin_ws
+catkin_make
+                </code></pre>
+                </li>
+              </ol>
+            </div>
+            <!-- Image right -->
+            <div class="col-lg-6 text-center">
+              <img
+                src="media/imager.jpg"
+                alt="Raspberry Pi Imager screenshot"
+                class="img-fluid rounded shadow-sm"
+                style="max-width: 500px"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Future Work -->
-    <section class="py-5">
+      <!-- Future Work -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>Future Work</h2>
+              <ul>
+                <li>Deploy to Raspberry Pi connected to an LED display</li>
+                <li>Add a timer so the system only runs in the mornings</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>Future Work</h2>
-            <ul>
-              <li>Deploy to Raspberry Pi connected to an LED display</li>
-              <li>Add a timer so the system only runs in the mornings</li>
-            </ul>
-          </div>
-        </div>
+        <p>&copy; 2024 Piper Floyd. All rights reserved.</p>
+        <p>
+          <a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> |
+          <a href="mailto:floydpip2@gmail.com">Email</a> |
+          <a href="https://github.com/floydpiper">GitHub</a>
+        </p>
       </div>
-    </section>
+    </footer>
 
-  </main>
-
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2024 Piper Floyd. All rights reserved.</p>
-      <p>
-        <a href="https://www.linkedin.com/in/piperfloyd">LinkedIn</a> | 
-        <a href="mailto:floydpip2@gmail.com">Email</a> | 
-        <a href="https://github.com/floydpiper">GitHub</a>
-      </p>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
